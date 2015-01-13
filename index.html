@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<div class="home">
+{% for post in site.posts %}
+  <article>
+    <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+    {{ post.excerpt }}
+    <a class="continue-reading" href="{{ post.url | prepend: site.baseurl }}">continue reading »</a>
+  </article>
+{% endfor %}
+</div>

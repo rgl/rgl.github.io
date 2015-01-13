@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<article>
+  <time datetime="{{ page.date | date: "%F" }}" title="{{ page.date | date: "%b %-d, %Y" }}">{{ page.date | date: "%b" }} <b>{{ page.date | date: "%-d" }}</b></time>
+  <h1>{{ page.title }}</h1>
+  {{ content }}
+  <div id="disqus_thread"></div>
+  <script async="true" src="http://blog-ruilopes.disqus.com/embed.js"></script>
+</article>

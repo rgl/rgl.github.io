@@ -1,0 +1,9 @@
+title: rui lopes notebook
+url: http://blog.ruilopes.com
+permalink: /:title.html
+excerpt_separator: "<!--MORE-->"
+safe: true
+lsi: false
+markdown: kramdown
+sass:
+  style: :compressed
