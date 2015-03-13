@@ -313,4 +313,4 @@ vagrant box remove ubuntu-14.10-amd64
 
 And that's it!
 
-In a future article I'll show you how to bootstrap a GitHub Pages blog inside a Xubuntu desktop with Vagrant.
+You could now proceed on how to [bootstrap a GitHub Pages blog inside a Xubuntu desktop]({% post_url 2015-03-13-bootstrapping-your-github-pages-blog-with-vagrant %}).
