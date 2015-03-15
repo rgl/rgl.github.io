@@ -3,7 +3,7 @@ layout: post
 title: Bootstrapping your GitHub Pages blog with Vagrant
 ---
 
-This will show you a way of creating a [Vagrant](https://www.vagrantup.com/) Virtual Machine with the tools needed for generating a blog based on the [GitHub Pages](https://pages.github.com/) stack. GitHub Pages uses the [Jekyll](http://jekyllrb.com/) static site generator. This VM will use the same version of the tools that are currently in use at GitHub.
+This will show you a way of creating a [Vagrant](https://www.vagrantup.com/) Virtual Machine with the tools needed for generating a blog based on the [GitHub Pages](https://pages.github.com/) stack. GitHub Pages uses the [Jekyll](http://jekyllrb.com/) static site generator. This VM will use the same version of the tools that are [currently in use](https://github.com/github/pages-gem) at GitHub.
 
 <!--MORE-->
 
@@ -91,6 +91,7 @@ VAGRANTFILE
 {% endraw %}
 {% endhighlight %}
 
+**NB** This blog has a similar [Vagrantfile](https://github.com/rgl/rgl.github.io/blob/master/Vagrantfile).
 
 Enter the VM and [generate](https://help.github.com/articles/generating-ssh-keys/) a SSH key-pair:
 
@@ -183,7 +184,7 @@ git push
 
 After a couple of minutes the blog should be live at:
 
-  http://example.github.io
+	http://example.github.io
 
 
 And that's it!
