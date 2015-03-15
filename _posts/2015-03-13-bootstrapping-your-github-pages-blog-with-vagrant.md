@@ -40,7 +40,7 @@ cat<<"VAGRANTFILE">Vagrantfile
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$setup_script = <<SETUP_SCRIPT
+$root_provision_script = <<'ROOT_PROVISION_SCRIPT'
 #!/bin/bash
 # abort this script on errors.
 set -eux
@@ -68,7 +68,7 @@ apt-get -y install zlib1g-dev
 
 # install Jekyll -- the version that is currently hosted by GitHub.
 gem install --verbose github-pages
-SETUP_SCRIPT
+ROOT_PROVISION_SCRIPT
 
 Vagrant.configure(2) do |config|
   config.vm.box = "xubuntu-14.10-amd64"
@@ -79,7 +79,7 @@ Vagrant.configure(2) do |config|
     vb.gui = true
   end
 
-  config.vm.provision "shell", inline: $setup_script
+  config.vm.provision "shell", inline: $root_provision_script
 end
 VAGRANTFILE
 {% endraw %}
