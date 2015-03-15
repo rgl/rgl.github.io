@@ -60,6 +60,12 @@ apt-get -y install nodejs
 # install git. we'll use it to later push the blog to github.
 apt-get -y install git
 
+# install ungit. a web-based gui for git.
+npm install -g ungit
+
+# install retext. a Markdown editor.
+apt-get -y install retext
+
 # install ruby. Jekyll is a ruby application.
 apt-get -y install ruby-dev ruby
 
