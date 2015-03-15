@@ -36,7 +36,7 @@ Create the `Vagrantfile` that provisions the GitHub Pages tools:
 
 {% highlight ruby %}
 {% raw %}
-cat<<"EOF">Vagrantfile
+cat<<"VAGRANTFILE">Vagrantfile
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -48,26 +48,26 @@ set -eux
 # prevent apt-get et al from opening stdin.
 # NB even with this, you'll still get some warnings that you can ignore:
 #     dpkg-preconfigure: unable to re-open stdin: No such file or directory
-alias "sudo=sudo DEBIAN_FRONTEND=noninteractive"
+export DEBIAN_FRONTEND=noninteractive
 
 # install javascript support for Jekyll.
 # See https://github.com/sstephenson/execjs
-sudo apt-get -y install software-properties-common
-sudo apt-add-repository -y ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get -y install nodejs
+apt-get -y install software-properties-common
+apt-add-repository -y ppa:chris-lea/node.js
+apt-get update
+apt-get -y install nodejs
 
 # install git. we'll use it to later push the blog to github.
-sudo apt-get -y install git
+apt-get -y install git
 
 # install ruby. Jekyll is a ruby application.
-sudo apt-get -y install ruby-dev ruby
+apt-get -y install ruby-dev ruby
 
 # install dependencies needed for the gems.
-sudo apt-get -y install zlib1g-dev libxml2-dev
+apt-get -y install zlib1g-dev
 
 # install Jekyll -- the version that is currently hosted by GitHub.
-sudo gem install --verbose github-pages
+gem install --verbose github-pages
 SETUP_SCRIPT
 
 Vagrant.configure(2) do |config|
@@ -75,14 +75,13 @@ Vagrant.configure(2) do |config|
 
   config.vm.hostname = "pages"
 
-  #config.vm.network "forwarded_port", guest: 4000, host: 4000
-
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
   end
 
   config.vm.provision "shell", inline: $setup_script
 end
+VAGRANTFILE
 {% endraw %}
 {% endhighlight %}
 
