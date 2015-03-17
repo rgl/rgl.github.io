@@ -55,6 +55,17 @@ $vagrant_provision_script = <<'VAGRANT_PROVISION_SCRIPT'
 # abort this script on errors.
 set -eux
 
+# setup the Desktop.
+# wait for the xfsettingsd daemon to create the database.
+while [ ! -s ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml ]; do sleep 2; done
+
+# set the window manager theme.
+# NB this is equivalent of doing: xfconf-query -c xfwm4 -p /general/theme -s Moheli
+#    BUT I didn't figure out how to make it run inside this provision script...
+sed -i -E 's,("theme" )(.+),\1type="string" value="Moheli"/>,g' ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+
+sudo service lightdm restart
+
 # setup the shell.
 cat<<"EOF" > ~/.bashrc
 if [[ $- != *i* ]] ; then
