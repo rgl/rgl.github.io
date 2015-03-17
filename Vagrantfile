@@ -43,6 +43,11 @@ gem install --verbose github-pages
 
 # install vim because I like it.
 apt-get -y install vim
+
+# enable automatic login.
+mkdir -p /etc/lightdm/lightdm.conf.d
+bash -c 'printf "[SeatDefaults]\nautologin-user=vagrant\n" > /etc/lightdm/lightdm.conf.d/50-autologin.conf'
+service lightdm restart
 ROOT_PROVISION_SCRIPT
 
 $vagrant_provision_script = <<'VAGRANT_PROVISION_SCRIPT'
