@@ -6,6 +6,12 @@ $root_provision_script = <<'ROOT_PROVISION_SCRIPT'
 # abort this script on errors.
 set -eux
 
+# enable automatic login.
+# we stop the lightdm service here and restart it on the user script, after we setup the desktop.
+service lightdm stop
+mkdir -p /etc/lightdm/lightdm.conf.d
+printf "[SeatDefaults]\nautologin-user=vagrant\n" > /etc/lightdm/lightdm.conf.d/50-autologin.conf
+
 # prevent apt-get et al from opening stdin.
 # NB even with this, you'll still get some warnings that you can ignore:
 #     dpkg-preconfigure: unable to re-open stdin: No such file or directory
@@ -43,11 +49,6 @@ gem install --verbose github-pages
 
 # install vim because I like it.
 apt-get -y install vim
-
-# enable automatic login.
-mkdir -p /etc/lightdm/lightdm.conf.d
-bash -c 'printf "[SeatDefaults]\nautologin-user=vagrant\n" > /etc/lightdm/lightdm.conf.d/50-autologin.conf'
-service lightdm restart
 ROOT_PROVISION_SCRIPT
 
 $vagrant_provision_script = <<'VAGRANT_PROVISION_SCRIPT'
@@ -56,13 +57,15 @@ $vagrant_provision_script = <<'VAGRANT_PROVISION_SCRIPT'
 set -eux
 
 # setup the Desktop.
-# wait for the xfsettingsd daemon to create the database.
-while [ ! -s ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml ]; do sleep 2; done
+install -d -m 700 ~/.config/xfce4/xfconf/xfce-perchannel-xml
 
-# set the window manager theme.
-# NB this is equivalent of doing: xfconf-query -c xfwm4 -p /general/theme -s Moheli
-#    BUT I didn't figure out how to make it run inside this provision script...
-sed -i -E 's,("theme" )(.+),\1type="string" value="Moheli"/>,g' ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+cat<<"EOF">~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+<channel name="xfwm4" version="1.0">
+  <property name="general" type="empty">
+    <property name="theme" type="string" value="Moheli"/>
+  </property>
+</channel>
+EOF
 
 sudo service lightdm restart
 
