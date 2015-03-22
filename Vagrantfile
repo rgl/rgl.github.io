@@ -73,7 +73,6 @@ if [[ $- != *i* ]] ; then
   return
 fi
 
-export TERM=linux
 export EDITOR=vim
 export PAGER=less
 
