@@ -14,7 +14,7 @@ You will use the following tools:
  * [Packer](https://packer.io/) and [packer-windows](https://github.com/joefitzgerald/packer-windows) to create an up-to-date Windows base image from an ISO file.
  * [Vagrant](https://www.vagrantup.com/) to launch and configure a base image tailored to a specific scenario.
  * [Boxstarter](http://boxstarter.org/) to easily install software from [Chocolatey](https://chocolatey.org/) packages.
- * [VirtualBox](https://www.virtualbox.org/) to run virtual machine locally.
+ * [VirtualBox](https://www.virtualbox.org/) to run virtual machines.
 
 
 ### Install
