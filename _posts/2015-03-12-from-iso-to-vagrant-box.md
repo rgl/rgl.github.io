@@ -19,7 +19,9 @@ Vagrant is used to automatically create and setup (or provision) a development e
 
 VirtualBox is used to actually run the Virtual Machine.
 
-<!--MORE--> 
+You can find the sources at [rgl/ubuntu-vagrant](https://github.com/rgl/ubuntu-vagrant), but read along to known more details.
+
+<!--MORE-->
 
 The following sections assume that you already have Packer, Vagrant and VirtualBox installed and available on your `PATH`.
 
